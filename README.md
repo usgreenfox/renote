@@ -29,11 +29,18 @@
 
 ## 設計書
 
-<...>
+ER図<br>
+https://drive.google.com/file/d/18Kzgt1BJ27JWrJElX7zAV0DlUOgN_GMR/view?usp=sharing<br>
+
+テーブル定義書<br>
+https://docs.google.com/spreadsheets/d/1yuMrslic17P9oVZCYUn31dSexhj6suJGlWKkWWkYTCA/edit?usp=sharing<br>
+
+アプリケーション詳細設計<br>
+https://docs.google.com/spreadsheets/d/1QwlGDjUPhJBzapOQ7Y0nQrt0ydAvaAJfH7sBsaGNIF8/edit?usp=sharing<br>
 
 ## チャレンジ要素一覧
 
-<https://docs.google.com/spreadsheets/d/1E4Quehglf9PxM1XTE-ft2X5-hJ5dmoJhsI-UJlgzVmY/edit#gid=0>
+https://docs.google.com/spreadsheets/d/1ib0w9J6Je8j3Vn8e4r5bPywJ1on1gh4oiuC5vsQYLP4/edit?usp=sharing
 
 ## 開発環境
 
@@ -42,8 +49,3 @@
 - フレームワーク：Ruby on Rails
 - JS ライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
-
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名と URL を明記してください。
-- 使用しない場合は、使用素材の項目を README から削除してください。
