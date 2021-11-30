@@ -28,6 +28,6 @@ class RemindsController < ApplicationController
   end
 
   def remind_params
-    params.require(remind).permit(:first_notice, :second_notice, :third_notice)
+    params.require(:remind).permit(:first_notice, :second_notice, :third_notice)
   end
 end
