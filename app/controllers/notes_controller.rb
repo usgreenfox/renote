@@ -6,6 +6,7 @@ class NotesController < ApplicationController
   end
 
   def show
+    @comment = new
   end
 
   def new
@@ -33,7 +34,7 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    @note.destroy
+    @note.destroy if current_user.id == @note.user.id
     redirect_to notes_path
   end
 
