@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  get 'users/show'
   devise_for :users
-    resources :notes do
+  resources :users, only:[:show, :edit, :update]
+  resources :notes do
     resources :comments, only:[:create, :destroy]
     resource :bookmarks, only:[:create, :destroy]
     resource :reminds, only:[:create, :update, :destroy]
