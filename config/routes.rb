@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :notes do
+    resources :notes do
     resources :comments, only:[:create, :destroy]
     resource :bookmarks, only:[:create, :destroy]
     resource :reminds, only:[:create, :update, :destroy]
