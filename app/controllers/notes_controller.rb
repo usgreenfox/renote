@@ -18,19 +18,11 @@ class NotesController < ApplicationController
 
   def create
     @note = current_user.notes.new(note_params)
-    if @note.save
-      redirect_to note_path(@note)
-    else
-      render 'new'
-    end
+    @note.save ? (redirect_to note_path(@note)) : (render 'new')
   end
 
   def update
-    if @note.update(note_params)
-      redirect_to note_path(@note)
-    else
-      render 'edit'
-    end
+    @note.update(note_params) ? (redirect_to note_path(@note)) : (render 'edit')
   end
 
   def destroy
