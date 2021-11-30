@@ -5,6 +5,6 @@ Rails.application.routes.draw do
     resource :reminds, only:[:create, :update, :destroy]
   end
   resources :users, only:[:show, :edit, :update]
-  get 'search' => 'seeaches#index', as:'search'
+  get 'search' => 'seaches#index', as:'search'
 
 end
