@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_30_101716) do
+ActiveRecord::Schema.define(version: 2021_11_30_105929) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id"
@@ -38,6 +38,18 @@ ActiveRecord::Schema.define(version: 2021_11_30_101716) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
+  create_table "reminds", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "note_id"
+    t.integer "first_notice", default: 1, null: false
+    t.integer "second_notice", default: 7, null: false
+    t.integer "third_notice", default: 30, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["note_id"], name: "index_reminds_on_note_id"
+    t.index ["user_id"], name: "index_reminds_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
