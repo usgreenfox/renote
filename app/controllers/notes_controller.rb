@@ -21,18 +21,22 @@ class NotesController < ApplicationController
   def create
     @note = current_user.notes.new(note_params)
     tag_list = params[:note][:name].split(nil)
-    @note.save 
-    ? @post.save_tag(tag_list)
+    if @note.save
+      @post.save_tag(tag_list)
       redirect_to note_path(@note)
-    : render 'new'
+    else
+      render 'new'
+    end
   end
 
   def update
     tag_list = params[:note][:name].split(nil)
-    @note.update(note_params)
-    ? @post.save_tag(tag_list)
+    if @note.update(note_params)
+      @post.save_tag(tag_list)
       redirect_to note_path(@note)
-    : render 'edit'
+    else
+      render 'edit'
+    end
   end
 
   def destroy
