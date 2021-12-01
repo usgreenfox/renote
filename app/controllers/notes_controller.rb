@@ -14,15 +14,25 @@ class NotesController < ApplicationController
   end
 
   def edit
+    @tags = @post.tags.pluck(:name) unless @post.tags.nil?
+    @tags = @tags.join(" ")
   end
 
   def create
     @note = current_user.notes.new(note_params)
-    @note.save ? (redirect_to note_path(@note)) : (render 'new')
+    tag_list = params[:note][:name].split(nil)
+    @note.save 
+    ? @post.save_tag(tag_list)
+      redirect_to note_path(@note)
+    : render 'new'
   end
 
   def update
-    @note.update(note_params) ? (redirect_to note_path(@note)) : (render 'edit')
+    tag_list = params[:note][:name].split(nil)
+    @note.update(note_params)
+    ? @post.save_tag(tag_list)
+      redirect_to note_path(@note)
+    : render 'edit'
   end
 
   def destroy

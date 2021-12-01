@@ -3,7 +3,7 @@ class RemindsController < ApplicationController
   before_action :set_remind, only: %i(destroy, update)
 
   def create
-    remind = current_user.reminds.find_or_create(note_id: @note.id)
+    remind = current_user.reminds.find_or_create_by(note_id: @note.id)
     remind.save
     redirect_to request.referer
   end
