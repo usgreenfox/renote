@@ -1,2 +1,5 @@
-h1 Notes#edit
-p Find me in app/views/notes/edit.html.slim
+.container
+    .row
+        .col-10.mx-auto
+            = render 'form', note: @note
+            = link_to '<< Back', notes_path
