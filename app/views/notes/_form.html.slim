@@ -1,0 +1,21 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <%= render 'layouts/validation', content: post %>
+
+  <div class="field form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :body %>
+    <trix-editor input="post_body" class="h-50 trix-content"></trix-editor>
+    <%= form.hidden_field :body, class:"form-control mt-3", id: :post_body, placeholder:"fgfg" %>
+  </div>
+
+  <%= form.label :tag_name %>（空白で分割）
+  <%= form.text_area :tag_name, class:"form-control", value: @tags %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
