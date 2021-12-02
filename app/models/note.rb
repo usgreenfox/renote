@@ -10,23 +10,23 @@ class Note < ApplicationRecord
   validates :body, presence: true
 
   def bookmarked_by?(user)
-    bookmarks.find_by(user_id: user.id).exists?
+    self.bookmarks.where(user_id: user.id).exists?
   end
 
   def remind_to?(user)
-    reminds.find_by(user_id: user.id).exists?
+    self.reminds.where(user_id: user.id).exists?
   end
-  
+
   def save_tag(sent_tags)
     # 現在登録されているタグを配列で取得
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
-    
+
     # 現在登録するタグと今回登録するタグとの差分を削除
     old_tags = current_tags - sent_tags
     old_tags.each do |old_tag|
       self.tags.delete Tag.find_by(name: old_tag)
     end
-    
+
     # 今回新規で登録するタグを作成
     new_tags = sent_tags - current_tags
     new_tags.each do |new_tag|
