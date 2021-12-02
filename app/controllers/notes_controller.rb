@@ -2,11 +2,11 @@ class NotesController < ApplicationController
   before_action :set_note, only:[:show, :edit, :update, :destroy]
 
   def index
-    @note = Note.all
+    @notes = Note.all
   end
 
   def show
-    @comment = new
+    @comment = Comment.new
   end
 
   def new
@@ -21,24 +21,29 @@ class NotesController < ApplicationController
   def create
     @note = current_user.notes.new(note_params)
     tag_list = params[:note][:name].split(nil)
-    @note.save 
-    ? @post.save_tag(tag_list)
+    if @note.save
+      @post.save_tag(tag_list)
       redirect_to note_path(@note)
-    : render 'new'
+    else
+      render 'new'
+    end
   end
 
   def update
     tag_list = params[:note][:name].split(nil)
-    @note.update(note_params)
-    ? @post.save_tag(tag_list)
+    if @note.update(note_params)
+      @post.save_tag(tag_list)
       redirect_to note_path(@note)
-    : render 'edit'
+    else
+      render 'edit'
+    end
   end
 
   def destroy
     @note.destroy if current_user.id == @note.user.id
     redirect_to notes_path
   end
+
 
   private
   def note_params
@@ -48,4 +53,5 @@ class NotesController < ApplicationController
   def set_note
     @note = Note.find(params[:id])
   end
+
 end
