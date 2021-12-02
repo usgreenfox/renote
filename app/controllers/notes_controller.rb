@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_note, only:[:show, :edit, :update, :destroy]
+  before_action :set_note, only: %i(show edit update destroy)
 
   def index
     @notes = Note.all
@@ -14,7 +14,7 @@ class NotesController < ApplicationController
   end
 
   def edit
-    @tags = @post.tags.pluck(:name) unless @post.tags.nil?
+    @tags = @note.tags.pluck(:name) unless @note.tags.nil?
     @tags = @tags.join(" ")
   end
 
