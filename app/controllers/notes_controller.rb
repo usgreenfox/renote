@@ -2,11 +2,11 @@ class NotesController < ApplicationController
   before_action :set_note, only:[:show, :edit, :update, :destroy]
 
   def index
-    @note = Note.all
+    @notes = Note.all
   end
 
   def show
-    @comment = new
+    @comment = Comment.new
   end
 
   def new
@@ -44,6 +44,7 @@ class NotesController < ApplicationController
     redirect_to notes_path
   end
 
+
   private
   def note_params
     params.require(:note).permit(:title, :body)
@@ -52,4 +53,5 @@ class NotesController < ApplicationController
   def set_note
     @note = Note.find(params[:id])
   end
+
 end
