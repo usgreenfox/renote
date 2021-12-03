@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_note, only:[:create, :destory]
+  before_action :set_note, only: %i(create destroy)
 
   def create
     @comment = current_user.comments.new(comment_params)
@@ -12,13 +12,13 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy if current_user.id == @note.user.id
+    @comment.destroy if current_user.id == @note.user_id
     redirect_to note_path(@note)
   end
 
   private
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:body, :note_id)
   end
 
   def set_note

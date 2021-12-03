@@ -1,0 +1,6 @@
+- comments.each do |comment|
+  p
+    = comment.body
+    = comment.user.name
+    - if comment.user_id == current_user.id
+      = link_to "Delete", note_comment_path(note, comment), method: :delete, data:{confirm:"Are you sure?"}

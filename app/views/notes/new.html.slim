@@ -1,12 +1,5 @@
-<div class="container">
-    <div class="row mt-5">
-        <div class="col-10 mx-auto">
-            
-            
-            <%= render 'form', post: @post %>
-            
-            
-            <%= link_to '<< Back', posts_path %>
-        </div>
-    </div>
-</div>
+.container
+    .row
+        .col-10.mx-auto
+            = render 'form', note: @note
+            = link_to '<< Back', notes_path

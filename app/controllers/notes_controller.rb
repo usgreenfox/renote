@@ -6,6 +6,7 @@ class NotesController < ApplicationController
   end
 
   def show
+    @comments = @note.comments.all
     @comment = Comment.new
   end
 
@@ -20,9 +21,9 @@ class NotesController < ApplicationController
 
   def create
     @note = current_user.notes.new(note_params)
-    tag_list = params[:note][:name].split(nil)
+    tag_list = params[:note][:tag_name].split(nil)
     if @note.save
-      @post.save_tag(tag_list)
+      @note.save_tag(tag_list)
       redirect_to note_path(@note)
     else
       render 'new'
@@ -30,9 +31,9 @@ class NotesController < ApplicationController
   end
 
   def update
-    tag_list = params[:note][:name].split(nil)
+    tag_list = params[:note][:tag_name].split(nil)
     if @note.update(note_params)
-      @post.save_tag(tag_list)
+      @note.save_tag(tag_list)
       redirect_to note_path(@note)
     else
       render 'edit'
