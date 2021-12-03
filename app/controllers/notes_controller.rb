@@ -6,6 +6,7 @@ class NotesController < ApplicationController
   end
 
   def show
+    @comments = @note.comments.all
     @comment = Comment.new
   end
 

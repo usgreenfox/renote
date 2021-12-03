@@ -1,6 +1,6 @@
 .container
   .row
-    .col-10.mx-auto
+    .col-8
       - if @note.user_id == current_user.id
         = link_to edit_note_path(@note) do
           i.far.fa-edit
@@ -29,3 +29,8 @@
       span = "#{@note.created_at} #{@note.updated_at}"
       span = @note.user.name
       = sanitize @note.body
+
+    .col-3
+      h3.border-bottom comments
+      = render 'comments/index', note: @note, comments: @comments
+      = render 'comments/form', note: @note, comment: @comment
