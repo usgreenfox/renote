@@ -74,3 +74,4 @@ gem 'slim-rails'
 gem 'html2slim'
 gem 'ransack'
 gem 'omniauth-google-oauth2'
+gem 'whenever', require: false
