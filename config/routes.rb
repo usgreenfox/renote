@@ -8,6 +8,6 @@ Rails.application.routes.draw do
     resource :reminds, only:[:create, :update, :destroy]
   end
   resources :users, only:[:show, :edit, :update]
-  get 'search' => 'seaches#index', as:'search'
+  get 'search' => 'searches#index', as:'search'
 
 end
