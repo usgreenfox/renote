@@ -1,0 +1,6 @@
+.container
+  .row
+    .col-10.mx-auto
+      h1 = @user.name
+      = link_to "編集する", edit_user_path(@user)
+      = render "notes/index", notes: @user.notes

@@ -1,0 +1,17 @@
+= form_with(model: note, local: true) do |f|
+  / = render 'layouts/validation', content: post
+
+  div.field.form-group
+    = f.label :title
+    = f.text_field :title, class:"form-control"
+
+  .field.form-group
+    = f.label :body
+    trix-editor input="note_body" class="h-50 trix-content"
+    = f.hidden_field :body, class:"form-control mt-3", id: :note_body, placeholder:"fgfg"
+
+  = f.label :tag_name
+  = f.text_area :tag_name, class:"form-control", value: @tags
+
+  .actions
+    = f.submit

@@ -1,0 +1,74 @@
+doctype html
+html
+  head
+    title
+      | Renote
+
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      =link_to "Re:note", notes_path, class: "navbar-brand"
+      button.navbar-toggler [
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          ]
+        span.navbar-toggler-icon
+      div.collapse.navbar-collapse#navbarSupportedContent
+        ul.navbar-nav.mr-auto
+          - if user_signed_in?
+            li.nav-item
+              =link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link"
+          - else
+            li.nav-item
+              =link_to "新規登録", new_user_registration_path, class:"nav-link"
+            li.nav-item
+              =link_to "ログイン", new_user_session_path, class:"nav-link"
+          li.nav-item
+            =link_to "Home", notes_path, class:"nav-link"
+          li.nav-item
+            =link_to "About", notes_path, class:"nav-link"
+          li.nav-item.dropdown
+            a#navbarDropdown.nav-link.dropdown-toggle [
+                href="#"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                ]
+              | Dropdown
+
+            .dropdown-menu [aria-labelledby="navbarDropdown"]
+              a.dropdown-item [href="#"]
+                | Action
+
+              a.dropdown-item [href="#"]
+                | Another action
+
+              .dropdown-divider
+              a.dropdown-item [href="#"]
+                | Something else here
+
+          li.nav-item
+            a.nav-link [href="#"]
+              | Disabled
+
+        = form_with(url: search_path, method: :get, local:true) do |f|
+          .form-inline.my-2.my-lg-0
+            = f.text_field :keyword, class:"form-control mr-sm-2"
+            = f.hidden_field :model, value: "note"
+            = f.submit "検索", class:"btn btn-outline-success my-2 my-sm-0"
+
+    p.notice = notice
+    p.alert = alert
+    = yield
+
+    footer.text-center.bg-light
+      p
+        | portfolio_kita_taka

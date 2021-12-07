@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "trix";
+
+// trix heading用
+.post-body h1 {
+    font-size: 1.5rem;
+}
+
+.trix-content {
+  height: 400px !important;
+  max-height: 400px !important;
+  overflow-y: auto;
+}
+
+.quote {
+  display: none;
+}
