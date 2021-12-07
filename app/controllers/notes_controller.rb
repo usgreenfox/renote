@@ -24,6 +24,7 @@ class NotesController < ApplicationController
     tag_list = params[:note][:tag_name].split(nil)
     if @note.save
       @note.save_tag(tag_list)
+      
       redirect_to note_path(@note)
     else
       render 'new'

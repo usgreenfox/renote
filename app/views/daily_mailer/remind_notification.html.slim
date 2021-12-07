@@ -1,31 +1,8 @@
 .container
   .row
     .col-8
-      - if @note.user_id == current_user.id
-        = link_to edit_note_path(@note) do
-          i.far.fa-edit
-          | 編集する
-
-      - else
-        - if @note.bookmarked_by?(current_user)
-          = link_to note_bookmarks_path(@note), method: :delete do
-            i.fas.fa-bookmark
-        - else
-          = link_to note_bookmarks_path(@note), method: :post do
-            i.far.fa-bookmark
-
-      - if @note.remind_to?(current_user)
-        = link_to note_reminds_path(@note), method: :delete do
-          i.far.fa-clock
-          | off
-
-      - else
-        = link_to note_reminds_path(@note), method: :post do
-          i.far.fa-clock
-          | on
-
       h1 = @note.title
-      = render "tag", note: @note
+      = render "notes/tag", note: @note
       span = "#{@note.created_at} #{@note.updated_at}"
       = link_to user_path(@note.user) do
         = @note.user.name
