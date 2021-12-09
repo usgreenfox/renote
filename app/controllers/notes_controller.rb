@@ -23,8 +23,10 @@ class NotesController < ApplicationController
     @note = current_user.notes.new(note_params)
     tag_list = params[:note][:tag_name].split(nil)
     if @note.save
+      #タグの登録
       @note.save_tag(tag_list)
-      
+      #リマインドの作成
+      current_user.reminds.find_or_create_by(note_id: @note.id)
       redirect_to note_path(@note)
     else
       render 'new'

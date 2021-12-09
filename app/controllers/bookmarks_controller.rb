@@ -2,8 +2,7 @@ class BookmarksController < ApplicationController
   before_action :set_note, only: %i(create destroy)
 
   def create
-    bookmark = current_user.bookmarks.find_or_create_by(note_id: @note.id)
-    bookmark.save
+    current_user.bookmarks.find_or_create_by(note_id: @note.id)
     redirect_to request.referer
   end
 
