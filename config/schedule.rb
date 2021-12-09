@@ -9,7 +9,7 @@
 env :PATH, ENV['PATH']
 # ログの出力先
 set :output, "log/cron.log"
-# ジョブの実行環境のして
+# ジョブの実行環境の指定
 set :environment, :development
 #
 # every 2.hours do
@@ -24,7 +24,8 @@ set :environment, :development
 
 # every 1.days, at: '5:00 pm' do
 every 1.minutes do
-  runner "DailyMailer.remind_notification"
+#   runner "DailyMailer.remind_notification"
+    rake "mails:remind_note"
 end
 
 # Learn more: http://github.com/javan/whenever
