@@ -22,9 +22,7 @@ set :environment, :development
 #   runner "AnotherModel.prune_old_records"
 # end
 
-# every 1.days, at: '5:00 pm' do
-every 1.minutes do
-#   runner "DailyMailer.remind_notification"
+every 1.days, at: '5:00 pm' do
     rake "mails:remind_note"
 end
 

@@ -5,7 +5,6 @@ class RemindsController < ApplicationController
   def create
     remind = current_user.reminds.find_or_create_by(note_id: @note.id)
     remind.save
-    # DailyMailer.remind_notification.deliver
     redirect_to request.referer
   end
 
