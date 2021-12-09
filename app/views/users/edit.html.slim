@@ -1,11 +1,16 @@
 .container
   .row
-    .col-10.mx-auto
-      = form_with(model: @user, local: true) do |f|
-        = f.label :name
-        = f.text_field :name
+    .mx-auto
+      .card.shadow style="width:25rem;"
+        .card-body
+          = form_with(model: @user, local: true) do |f|
+            .form-group.d-flex.justify-content-center
+              = f.label :name
+              = f.text_field :name, class:"form-control-sm ml-2"
 
-        = f.label :email
-        = f.email_field :email
+            .form-group.d-flex.justify-content-center
+              = f.label :email
+              = f.email_field :email, class:"form-control-sm ml-2"
 
-        = f.submit
+            .d-flex.justify-content-center
+              = f.submit "更新", class:"btn btn-outline-dark btn-sm"
