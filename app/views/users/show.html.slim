@@ -1,6 +1,21 @@
 .container
   .row
     .col-10.mx-auto
-      h1 = @user.name
-      = link_to "編集する", edit_user_path(@user)
-      = render "notes/index", notes: @user.notes
+      .d-flex.align-items-baseline
+        h1 = @user.name
+        - if @user.id == current_user.id
+          span.ml-3 = @user.email
+          = link_to edit_user_path(@user), class:"ml-3" do
+            i.fas.fa-user-edit
+            | 編集
+
+          = link_to new_note_path, class:"btn btn-outline-dark btn-sm ml-auto" do
+            i.fas.fa-plus
+            | 投稿
+
+      .mt-3
+        h3 my note
+        = render "notes/index", notes: @user.notes
+      .mt-3
+        h3 bookmarks
+        = render "notes/index", notes: @user.fav_notes

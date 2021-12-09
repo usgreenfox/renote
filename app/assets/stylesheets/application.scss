@@ -18,6 +18,15 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "trix";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;500&family=Zen+Kaku+Gothic+New:wght@300;400&display=swap');
+
+* {
+  font-family: 'Outfit', 'Zen Kaku Gothic New', sans-serif ;
+}
+
+body {
+  // background-color: #d4dcd6;
+}
 
 // trix heading用
 .post-body h1 {
@@ -32,4 +41,9 @@
 
 .quote {
   display: none;
+}
+
+// bootstrap 修正
+.form-control-sm {
+  border: solid 1px #343a40;
 }
