@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_30_230355) do
+ActiveRecord::Schema.define(version: 2021_12_10_025548) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2021_11_30_230355) do
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "in_private", default: false
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 

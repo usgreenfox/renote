@@ -10,8 +10,14 @@
     trix-editor input="note_body" class="h-50 trix-content"
     = f.hidden_field :body, class:"form-control mt-3", id: :note_body, placeholder:"fgfg"
 
-  = f.label :tag_name
-  = f.text_field :tag_name, class:"form-control", value: @tags
+  .form-group
+    = f.label :tag_name
+    = f.text_field :tag_name, class:"form-control", value: @tags
 
-  .actions
-    = f.submit class:"btn btn-outline-dark btn-sm my-3"
+  .form-group
+    = f.radio_button :in_private, false, checked: !@note.in_private
+    = f.label :in_private_false, "公開"
+    = f.radio_button :in_private, true, checked: @note.in_private, class:"ml-2"
+    = f.label :in_private_true, "非公開"
+  .actions.form-group
+    = f.submit class:"btn btn-outline-dark btn-sm"
