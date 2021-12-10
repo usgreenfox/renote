@@ -1,37 +1,43 @@
 .container
   .row
-    .col-8
-      - if @note.user_id == current_user.id
-        = link_to edit_note_path(@note) do
-          i.far.fa-edit
-          | 編集する
+    .col-10.mx-auto
+      .d-flex.justify-content-between
+        .ml-1
+          - if @note.user_id == current_user.id
+            = link_to edit_note_path(@note) do
+              i.far.fa-edit.fa-2x
+              | 編集
 
-      - else
-        - if @note.bookmarked_by?(current_user)
-          = link_to note_bookmarks_path(@note), method: :delete do
-            i.fas.fa-bookmark
-        - else
-          = link_to note_bookmarks_path(@note), method: :post do
-            i.far.fa-bookmark
+          - else
+            - if @note.bookmarked_by?(current_user)
+              = link_to note_bookmarks_path(@note), method: :delete do
+                i.fas.fa-bookmark.fa-2x
+            - else
+              = link_to note_bookmarks_path(@note), method: :post do
+                i.far.fa-bookmark.fa-2x
+          span.ml-3
+            - if @note.remind_to?(current_user)
+              = link_to note_reminds_path(@note), method: :delete do
+                i.fa.fa-clock.fa-2x
+            - else
+              = link_to note_reminds_path(@note), method: :post do
+                i.far.fa-clock.fa-2x
 
-      - if @note.remind_to?(current_user)
-        = link_to note_reminds_path(@note), method: :delete do
-          i.far.fa-clock
-          | off
+        .mr-1.text-right
+          = "作成：#{@note.created_at.strftime('%Y/%m/%d')}"
+          span.ml-2 = "更新：#{@note.updated_at.strftime('%Y/%m/%d')}"
+          br
+          | written by
+          = link_to user_path(@note.user), class:"ml-2" do
+            = @note.user.name
+      .card.shadow
+        .card-body
+          h1 = @note.title
+          = render "tag", note: @note
+          .mt-3
+            = sanitize @note.body
 
-      - else
-        = link_to note_reminds_path(@note), method: :post do
-          i.far.fa-clock
-          | on
 
-      h1 = @note.title
-      = render "tag", note: @note
-      span = "#{@note.created_at} #{@note.updated_at}"
-      = link_to user_path(@note.user) do
-        = @note.user.name
-      = sanitize @note.body
-
-    .col-3
-      h3.border-bottom comments
+      h3.border-bottom.mt-3 comments
       = render 'comments/index', note: @note, comments: @comments
       = render 'comments/form', note: @note, comment: @comment
