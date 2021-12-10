@@ -2,12 +2,16 @@ class NotesController < ApplicationController
   before_action :set_note, only: %i(show edit update destroy)
 
   def index
-    @notes = Note.all
+    @notes = Note.all.order(updated_at: :DESC)
   end
 
   def show
-    @comments = @note.comments.all
-    @comment = Comment.new
+    if @note.in_private == true && @note.user_id != current_user.id
+      redirect_to notes_path
+    else
+      @comments = @note.comments.all
+      @comment = Comment.new
+    end
   end
 
   def new
@@ -51,7 +55,7 @@ class NotesController < ApplicationController
 
   private
   def note_params
-    params.require(:note).permit(:title, :body)
+    params.require(:note).permit(:title, :body, :in_private)
   end
 
   def set_note
