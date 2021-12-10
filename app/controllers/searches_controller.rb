@@ -1,9 +1,9 @@
 class SearchesController < ApplicationController
   def index
-    model = params[:model]
-    keyword = params[:keyword]
+    @model = params[:model]
+    @keyword = params[:keyword]
 
-    @results = search_for(model, keyword)
+    @results = search_for(@model, @keyword)
   end
 
   def search_for(model, keyword)

@@ -1,5 +1,7 @@
 .container
   .row
     .col-10.mx-auto
-      h1 検索結果
+      h1
+        i.fas.fa-search.mr-1
+        = "#{@keyword}"
       = render "notes/index", notes: @results

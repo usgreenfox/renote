@@ -11,7 +11,7 @@
     = f.hidden_field :body, class:"form-control mt-3", id: :note_body, placeholder:"fgfg"
 
   = f.label :tag_name
-  = f.text_area :tag_name, class:"form-control", value: @tags
+  = f.text_field :tag_name, class:"form-control", value: @tags
 
   .actions
-    = f.submit
+    = f.submit class:"btn btn-outline-dark btn-sm my-3"
