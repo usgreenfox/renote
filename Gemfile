@@ -73,3 +73,7 @@ gem 'slim-rails'
 gem 'html2slim'
 gem 'omniauth-google-oauth2'
 gem 'whenever', require: false
+
+group :production do
+  gem 'mysql2'
+end
