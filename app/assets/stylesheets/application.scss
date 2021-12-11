@@ -13,3 +13,41 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "trix";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;500&family=Zen+Kaku+Gothic+New:wght@300;400&display=swap');
+
+* {
+  font-family: 'Zen Kaku Gothic New', sans-serif ;
+}
+
+body {
+  // background-color: #d4dcd6;
+}
+
+// trix heading用
+.card h1 {
+    font-size: 1.5rem;
+}
+
+.trix-content {
+  height: 400px !important;
+  max-height: 400px !important;
+  overflow-y: auto;
+}
+
+.quote {
+  display: none;
+}
+pre {
+  background-color: #eee;
+  padding: 10px;
+}
+
+// bootstrap 修正
+.form-control-sm {
+  border: solid 1px #343a40;
+}

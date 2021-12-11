@@ -1,0 +1,7 @@
+.container
+  .row
+    .col-8
+      h1 = @note.title
+      span = "#{@note.created_at} #{@note.updated_at}"
+      = @note.user.name
+      = sanitize @note.body

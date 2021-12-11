@@ -1,0 +1,5 @@
+.fas.fa-tags
+- note.tags.each do |tag|
+  = link_to search_path(keyword: tag.name, sort: "updated_new", model: "tag") do
+    span.badge.bg-secondary.text-light.ml-2
+      = tag.name
