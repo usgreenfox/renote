@@ -48,5 +48,5 @@ if Rails.env.production?
     true
   )
   #デーモン
-  demonize
+  daemonize
 end
