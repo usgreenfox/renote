@@ -49,4 +49,4 @@ if Rails.env.production?
   )
   #デーモン
   demonize
-  
+end
