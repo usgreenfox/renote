@@ -10,7 +10,7 @@ env :PATH, ENV['PATH']
 # ログの出力先
 set :output, "log/cron.log"
 # ジョブの実行環境の指定
-set :environment, :development
+set :environment, :production
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"

@@ -1,3 +1,6 @@
-' Daily#remind_notification
-= "\r\n" * 2
-' #{@greeting}, find me in app/views/daily_mailer/remind_notification.text.slim
+タイトル
+= @remind.note.title
+
+コンテンツ
+= sanitize @remind.note.body
+/= link_to "ページへ移動", note_url(@remind.note)

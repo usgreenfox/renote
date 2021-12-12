@@ -1,7 +1,7 @@
-.container
+ .container
   .row
-    .col-8
-      h1 = @note.title
-      span = "#{@note.created_at} #{@note.updated_at}"
-      = @note.user.name
-      = sanitize @note.body
+    h4.border-bottom
+      = @remind.note.title
+    div
+      = sanitize @remind.note.body
+    /= link_to "ページへ移動", note_url(@remind.note)
