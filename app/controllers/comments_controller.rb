@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_note, only: %i(create destroy)
+  before_action :authenticate_user!
 
   def create
     @comment = current_user.comments.new(comment_params)
