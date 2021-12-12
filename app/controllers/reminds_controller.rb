@@ -1,6 +1,7 @@
 class RemindsController < ApplicationController
   before_action :set_note, only: %i(create destroy update)
   before_action :set_remind, only: %i(destroy update)
+  before_action :authenticate_user!
 
   def create
     current_user.reminds.find_or_create_by(note_id: @note.id)

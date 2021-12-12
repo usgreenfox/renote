@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root to: 'homes#top'
+  get 'homes/top'
+  get 'homes/about'
   root to: "notes#index"
   devise_for :users
   resources :users, only:[:show, :edit, :update]
