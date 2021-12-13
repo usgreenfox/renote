@@ -3,7 +3,7 @@
     .card.shadow-sm.mb-3
      .card-body
         = link_to note_path(note) do
-          h4 = note.title
+          h4.text-truncate = note.title
         i.fas.fa-feather-alt.mr-2
         = link_to user_path(note.user) do
           = note.user.name

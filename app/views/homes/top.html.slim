@@ -1,2 +1,17 @@
-h1 Homes#top
-p Find me in app/views/homes/top.html.slim
+.container
+  .row
+    .col.col-lg-10.mx-auto
+      #main-visual
+        /.d-flex.align-items-center
+        p.ml-md-5
+          | 思い出すたび
+          br
+          span.ml-3 忘れにくくなる
+      .mt-3
+        h3
+          = link_to "About", homes_about_path
+      .mt-3
+        h3
+          = link_to "Notes", notes_path
+      .mt-3
+        h3 Contact us
