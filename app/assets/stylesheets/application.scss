@@ -29,7 +29,13 @@ a {
 }
 // trix heading用
 .card h1 {
-    font-size: 1.5rem;
+    font-size: 1.5em;
+}
+
+h4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .trix-content {

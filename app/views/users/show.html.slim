@@ -1,6 +1,6 @@
 .container
   .row
-    .col-10.mx-auto
+    .col.col-lg-10.mx-auto
       .d-flex.align-items-baseline
         h1 = @user.name
         - if user_signed_in? && @user.id == current_user.id
