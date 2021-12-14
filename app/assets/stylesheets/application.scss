@@ -27,9 +27,16 @@
 a {
   color: #555;
 }
+a:hover {
+  color: #222;
+  text-decoration: underline 2px #ffdc00;
+}
+.non-deco:hover {
+  text-decoration: none;
+}
 
-.notice {
-  // background-color: #fabf14;
+.notice,
+.marker {
   background:linear-gradient(transparent 75%, #ffdc00 75%);
   font-weight:bold;
 }
@@ -40,11 +47,6 @@ a {
     padding: 0;
     border: none;
     border-radius: 0rem;
-}
-
-.marker {
-  background:linear-gradient(transparent 75%, #ffdc00 75%);
-  font-weight:bold;
 }
 
 #main-visual {

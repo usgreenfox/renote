@@ -5,23 +5,23 @@
         .ml-1
           - if user_signed_in?
             - if @note.user_id == current_user.id
-              = link_to edit_note_path(@note) do
+              = link_to edit_note_path(@note), class:"non-deco" do
                 i.far.fa-edit.fa-lg
                 | 編集
 
             - else
               - if @note.bookmarked_by?(current_user)
-                = link_to note_bookmarks_path(@note), method: :delete do
+                = link_to note_bookmarks_path(@note), method: :delete, class:"icon-yellow" do
                   i.fas.fa-bookmark.fa-lg
               - else
-                = link_to note_bookmarks_path(@note), method: :post do
+                = link_to note_bookmarks_path(@note), method: :post, class:"icon-yellow" do
                   i.far.fa-bookmark.fa-lg
             span.ml-3
               - if @note.remind_to?(current_user)
-                = link_to note_reminds_path(@note), method: :delete do
+                = link_to note_reminds_path(@note), method: :delete, class:"icon-yellow" do
                   i.fa.fa-clock.fa-lg
               - else
-                = link_to note_reminds_path(@note), method: :post do
+                = link_to note_reminds_path(@note), method: :post, class:"icon-yellow" do
                   i.far.fa-clock.fa-lg
 
         .mr-1.text-right
