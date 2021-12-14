@@ -34,7 +34,7 @@
       .card.shadow
         .card-body
           h1 = @note.title
-          = render "tag", note: @note
+          = render "notes/tag", note: @note
           .mt-3
             = sanitize @note.body
 

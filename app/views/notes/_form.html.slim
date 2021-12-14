@@ -1,6 +1,5 @@
 = form_with(model: note, local: true) do |f|
-  / = render 'layouts/validation', content: post
-
+  = render "layouts/error_messages", resource: note
   div.field.form-group
     = f.label :title
     = f.text_field :title, class:"form-control"
@@ -12,12 +11,12 @@
 
   .form-group
     = f.label :tag_name
-    = f.text_field :tag_name, class:"form-control", value: @tags
+    = f.text_field :tag_name, class:"form-control", value: tags
 
   .form-group
-    = f.radio_button :in_private, false, checked: !@note.in_private
+    = f.radio_button :in_private, false, checked: !note.in_private
     = f.label :in_private_false, "公開"
-    = f.radio_button :in_private, true, checked: @note.in_private, class:"ml-2"
+    = f.radio_button :in_private, true, checked: note.in_private, class:"ml-2"
     = f.label :in_private_true, "非公開"
   .actions.form-group
     = f.submit class:"btn btn-outline-dark btn-sm"

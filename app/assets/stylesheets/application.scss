@@ -29,9 +29,17 @@ a {
 }
 
 .notice {
-  // background-color: #ffd900;
+  // background-color: #fabf14;
   background:linear-gradient(transparent 75%, #ffdc00 75%);
   font-weight:bold;
+}
+
+.alert {
+  background:linear-gradient(transparent 80%, #ff7f7f 80%);
+  font-weight:bold;
+    padding: 0;
+    border: none;
+    border-radius: 0rem;
 }
 
 .marker {
