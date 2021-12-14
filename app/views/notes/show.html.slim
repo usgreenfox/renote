@@ -1,11 +1,11 @@
 .container
   .row
-    .col-10.mx-auto
+    .col.col-lg-10.mx-auto
       .d-flex.justify-content-between.align-items-center
         .ml-1
           - if user_signed_in?
             - if @note.user_id == current_user.id
-              = link_to edit_note_path(@note) do
+              = link_to edit_note_path(@note), class:"non-deco" do
                 i.far.fa-edit.fa-lg
                 | 編集
 
@@ -34,7 +34,7 @@
       .card.shadow
         .card-body
           h1 = @note.title
-          = render "tag", note: @note
+          = render "notes/tag", note: @note
           .mt-3
             = sanitize @note.body
 

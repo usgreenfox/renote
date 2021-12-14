@@ -1,5 +1,5 @@
 = form_with(model: [note, comment], local: true) do |form|
-  /= render 'layouts/validation', content: comment
+  = render "layouts/error_messages", resource: comment
 
   .form-group
     = form.hidden_field :note_id, value: note.id

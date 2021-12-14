@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to note_path(@note)
     else
+      @comments = @note.comments.all
       render 'notes/show'
     end
   end

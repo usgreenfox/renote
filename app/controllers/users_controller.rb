@@ -11,7 +11,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params) ? (redirect_to user_path(@user)) : (render 'edit')
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "ユーザー情報が更新されました"
+    else
+      render 'edit'
+    end
   end
 
   private

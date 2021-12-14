@@ -32,7 +32,7 @@ class NotesController < ApplicationController
       @note.save_tag(tag_list)
       #リマインドの作成
       current_user.reminds.find_or_create_by(note_id: @note.id)
-      redirect_to note_path(@note)
+      redirect_to note_path(@note), notice: "ノートが作成されました"
     else
       render 'new'
     end
@@ -42,7 +42,7 @@ class NotesController < ApplicationController
     tag_list = params[:note][:tag_name].split(nil)
     if @note.update(note_params)
       @note.save_tag(tag_list)
-      redirect_to note_path(@note)
+      redirect_to note_path(@note), notice: "ノートが更新されました"
     else
       render 'edit'
     end
@@ -50,7 +50,7 @@ class NotesController < ApplicationController
 
   def destroy
     @note.destroy if current_user.id == @note.user.id
-    redirect_to notes_path
+    redirect_to notes_path, notice: "ノートが削除されました"
   end
 
 
