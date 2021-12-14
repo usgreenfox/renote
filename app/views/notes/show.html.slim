@@ -11,17 +11,17 @@
 
             - else
               - if @note.bookmarked_by?(current_user)
-                = link_to note_bookmarks_path(@note), method: :delete, class:"icon-yellow" do
+                = link_to note_bookmarks_path(@note), method: :delete do
                   i.fas.fa-bookmark.fa-lg
               - else
-                = link_to note_bookmarks_path(@note), method: :post, class:"icon-yellow" do
+                = link_to note_bookmarks_path(@note), method: :post do
                   i.far.fa-bookmark.fa-lg
             span.ml-3
               - if @note.remind_to?(current_user)
-                = link_to note_reminds_path(@note), method: :delete, class:"icon-yellow" do
+                = link_to note_reminds_path(@note), method: :delete do
                   i.fa.fa-clock.fa-lg
               - else
-                = link_to note_reminds_path(@note), method: :post, class:"icon-yellow" do
+                = link_to note_reminds_path(@note), method: :post do
                   i.far.fa-clock.fa-lg
 
         .mr-1.text-right
