@@ -6,41 +6,46 @@ html
 
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'application',
+      media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta name='viewport' content='width=device-width, initial-scale=1'
   body
     nav.navbar.navbar-expand-lg.navbar-light.shadow.mb-3
-      =link_to "Re:note", root_path, class: "navbar-brand"
+      =link_to 'Re:note', root_path, class: 'navbar-brand'
       button.navbar-toggler [
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          type='button'
+          data-toggle='collapse'
+          data-target='#navbarSupportedContent'
+          aria-controls='navbarSupportedContent'
+          aria-expanded='false'
+          aria-label='Toggle navigation'
           ]
         span.navbar-toggler-icon
-      div.collapse.navbar-collapse#navbarSupportedContent
+      .collapse.navbar-collapse#navbarSupportedContent
         ul.navbar-nav.mr-auto
           - if user_signed_in?
             li.nav-item
-              =link_to user_path(current_user), class:"nav-link" do
+              = link_to user_path(current_user), class: 'nav-link' do
                 | Mypage
 
             li.nav-item
-              =link_to "Log out", destroy_user_session_path, method: :delete, class:"nav-link"
+              = link_to 'Log out', destroy_user_session_path,
+                method: :delete, class: 'nav-link'
           - else
             li.nav-item
-              =link_to "Sign up", new_user_registration_path, class:"nav-link"
+              = link_to 'Sign up', new_user_registration_path, class: 'nav-link'
             li.nav-item
-              =link_to "Sign in", new_user_session_path, class:"nav-link"
+              = link_to 'Sign in', new_user_session_path, class: 'nav-link'
 
-        = form_with(url: search_path, method: :get, local:true) do |f|
+        = form_with(url: search_path, method: :get, local: true) do |f|
           .form-inline.my-2.my-lg-0
-            = f.text_field :keyword, placeholder: "title, body, tag", value: @keyword, class:"form-control-sm mr-sm-2"
-            = f.hidden_field :model, value: "note"
-            = f.button type: "submit", class:"btn btn-outline-dark btn-sm my-2 my-sm-0" do
+            = f.text_field :keyword,
+              placeholder: 'title, body, tag',
+              value: @keyword, class: 'form-control-sm mr-sm-2'
+            = f.hidden_field :model, value: 'note'
+            = f.button type: 'submit',
+              class: 'btn btn-outline-dark btn-sm my-2 my-sm-0' do
              i.fas.fa-search
 
     .notifications

@@ -5,17 +5,16 @@
         .ml-1
           - if user_signed_in?
             - if @note.user_id == current_user.id
-              = link_to edit_note_path(@note), class:"non-deco" do
+              = link_to edit_note_path(@note), class: 'non-deco' do
                 i.far.fa-edit.fa-lg
                 | 編集
 
+            - elsif @note.bookmarked_by?(current_user)
+              = link_to note_bookmarks_path(@note), method: :delete do
+                i.fas.fa-bookmark.fa-lg
             - else
-              - if @note.bookmarked_by?(current_user)
-                = link_to note_bookmarks_path(@note), method: :delete do
-                  i.fas.fa-bookmark.fa-lg
-              - else
-                = link_to note_bookmarks_path(@note), method: :post do
-                  i.far.fa-bookmark.fa-lg
+              = link_to note_bookmarks_path(@note), method: :post do
+                i.far.fa-bookmark.fa-lg
             span.ml-3
               - if @note.remind_to?(current_user)
                 = link_to note_reminds_path(@note), method: :delete do
@@ -29,12 +28,12 @@
           span.ml-2 = "更新：#{@note.updated_at.strftime('%Y/%m/%d')}"
           br
           | written by
-          = link_to user_path(@note.user), class:"ml-2" do
+          = link_to user_path(@note.user), class: 'ml-2' do
             = @note.user.name
       .card.shadow
         .card-body
           h1 = @note.title
-          = render "notes/tag", note: @note
+          = render 'notes/tag', note: @note
           .mt-3
             = sanitize @note.body
 

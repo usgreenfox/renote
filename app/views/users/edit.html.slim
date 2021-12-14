@@ -1,17 +1,17 @@
 .container
   .row
     .mx-auto
-      = render "layouts/error_messages", resource: @user
-      .card.shadow style="width:25rem;"
+      = render 'layouts/error_messages', resource: @user
+      .card.shadow style='width:25rem;'
         .card-body
           = form_with(model: @user, local: true) do |f|
             .form-group.d-flex.justify-content-center
               = f.label :name
-              = f.text_field :name, class:"form-control-sm ml-2"
+              = f.text_field :name, class: 'form-control-sm ml-2'
 
             .form-group.d-flex.justify-content-center
               = f.label :email
-              = f.email_field :email, class:"form-control-sm ml-2"
+              = f.email_field :email, class: 'form-control-sm ml-2'
 
             .d-flex.justify-content-center
-              = f.submit "更新", class:"btn btn-outline-dark btn-sm"
+              = f.submit '更新', class: 'btn btn-outline-dark btn-sm'
