@@ -3,7 +3,9 @@ class NotesController < ApplicationController
   before_action :authenticate_user!, except: %i(index show)
 
   def index
-    @notes = Note.all.order(updated_at: :DESC)
+    @column = sort_column
+    @direction = sort_direction
+    @notes = Note.all.order(@column => @direction)
   end
 
   def show
@@ -63,4 +65,11 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
   end
 
+  def sort_column
+    params[:column].present? ? params[:column] : 'updated_at'
+  end
+
+  def sort_direction
+    params[:direction].present? ? params[:direction] : :DESC
+  end
 end
