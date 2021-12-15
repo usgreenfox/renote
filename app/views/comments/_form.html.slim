@@ -1,4 +1,4 @@
-= form_with(model: [note, comment], local: true) do |form|
+= form_with(model: [note, comment], remote: true) do |form|
   = render 'layouts/error_messages', resource: comment
 
   .form-group

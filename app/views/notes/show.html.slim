@@ -33,6 +33,8 @@
             = sanitize @note.body
 
       h3.border-bottom.mt-3 comments
-      = render 'comments/index', note: @note, comments: @comments
+      .comments-index
+        = render 'comments/index', note: @note, comments: @comments
       -if user_signed_in?
-        = render 'comments/form', note: @note, comment: @comment
+        .comment-error
+          = render 'comments/form', note: @note, comment: @comment
