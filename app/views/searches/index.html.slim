@@ -4,5 +4,5 @@
       h1
         span.marker
           i.fas.fa-search.mr-1
-          = "#{@keyword}"
-      = render "notes/index", notes: @results
+          = @keyword
+      = render 'notes/index', notes: @results

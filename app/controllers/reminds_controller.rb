@@ -5,12 +5,12 @@ class RemindsController < ApplicationController
 
   def create
     current_user.reminds.find_or_create_by(note_id: @note.id)
-    redirect_to request.referer
+    # redirect_to request.referer
   end
 
   def destroy
     @remind.destroy if @remind.present?
-    redirect_to request.referer
+    # redirect_to request.referer
   end
 
   def update
