@@ -14,7 +14,8 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user), notice: "ユーザー情報が更新されました"
     else
-      render 'edit'
+      flash[:alert] = @user.errors.full_messages
+      redirect_to edit_user_path(@user)
     end
   end
 

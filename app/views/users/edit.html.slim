@@ -5,12 +5,12 @@
       .card.shadow style='width:25rem;'
         .card-body
           = form_with(model: @user, local: true) do |f|
-            .form-group.d-flex.justify-content-center
-              = f.label :name
+            .form-group.row
+              = f.label :name, class: 'col-5 text-right'
               = f.text_field :name, class: 'form-control-sm ml-2'
 
-            .form-group.d-flex.justify-content-center
-              = f.label :email
+            .form-group.row
+              = f.label :email, class: 'col-5 text-right'
               = f.email_field :email, class: 'form-control-sm ml-2'
 
             .d-flex.justify-content-center
