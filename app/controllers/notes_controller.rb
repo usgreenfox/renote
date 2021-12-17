@@ -36,7 +36,7 @@ class NotesController < ApplicationController
       current_user.reminds.find_or_create_by(note_id: @note.id)
       redirect_to note_path(@note), notice: "ノートが作成されました"
     else
-      render 'new'
+      render :new
     end
   end
 
