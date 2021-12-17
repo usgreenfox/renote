@@ -1,22 +1,21 @@
-= form_with(model: note, local: true) do |f|
-  = render "layouts/error_messages", resource: note
-  div.field.form-group
+= form_with(model: note, local:true) do |f|
+  .field.form-group
     = f.label :title
-    = f.text_field :title, class:"form-control"
+    = f.text_field :title, class: 'form-control'
 
   .field.form-group
     = f.label :body
-    trix-editor input="note_body" class="h-50 trix-content"
-    = f.hidden_field :body, class:"form-control mt-3", id: :note_body, placeholder:"fgfg"
+    trix-editor input='note_body' class='h-50 trix-content'
+    = f.hidden_field :body, class: 'form-control mt-3', id: :note_body
 
   .form-group
     = f.label :tag_name
-    = f.text_field :tag_name, class:"form-control", value: tags
+    = f.text_field :tag_name, class: 'form-control', value: tags
 
   .form-group
     = f.radio_button :in_private, false, checked: !note.in_private
-    = f.label :in_private_false, "公開"
-    = f.radio_button :in_private, true, checked: note.in_private, class:"ml-2"
-    = f.label :in_private_true, "非公開"
+    = f.label :in_private_false, '公開'
+    = f.radio_button :in_private, true, checked: note.in_private, class: 'ml-2'
+    = f.label :in_private_true, '非公開'
   .actions.form-group
-    = f.submit class:"btn btn-outline-dark btn-sm"
+    = f.submit class: 'btn btn-outline-dark btn-sm'

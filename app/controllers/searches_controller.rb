@@ -5,7 +5,8 @@ class SearchesController < ApplicationController
 
     @results = search_for(@model, @keyword)
   end
-
+  
+  private
   def search_for(model, keyword)
     # タグのバッジをクリック時、完全一致
     if model == 'tag'

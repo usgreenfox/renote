@@ -5,19 +5,20 @@
         h1 = @user.name
         - if user_signed_in? && @user.id == current_user.id
           span.ml-3 = @user.email
-          = link_to edit_user_path(@user), class:"ml-3 non-deco" do
+          = link_to edit_user_path(@user), class: 'ml-3 non-deco' do
             i.fas.fa-user-edit
             | 編集
 
-          = link_to new_note_path, class:"btn btn-outline-dark btn-sm ml-auto" do
+          = link_to new_note_path,
+            class: 'btn btn-outline-dark btn-sm ml-auto' do
             i.fas.fa-plus
             | 投稿
 
       .mt-3
         h3
           span.marker my note
-        = render "notes/index", notes: @user.notes
+        = render 'notes/index', notes: @user.notes
       .mt-3
         h3
           span.marker bookmarks
-        = render "notes/index", notes: @user.fav_notes
+        = render 'notes/index', notes: @user.fav_notes
