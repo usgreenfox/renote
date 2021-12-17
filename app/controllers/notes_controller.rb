@@ -30,13 +30,18 @@ class NotesController < ApplicationController
     @note = current_user.notes.new(note_params)
     tag_list = params[:note][:tag_name].split(nil)
     if @note.save
-      #タグの登録
+      # sessionの初期化
+      session[:note] = nil
+      # タグの登録
       @note.save_tag(tag_list)
-      #リマインドの作成
+      # リマインドの作成
       current_user.reminds.find_or_create_by(note_id: @note.id)
-      redirect_to note_path(@note), notice: "ノートが作成されました"
+      redirect_to note_path(@note), notice: 'ノートが作成されました'
     else
-      render 'new'
+      # フォームから渡された値のみsessionに保存（user_id等は保存しない）
+      session[:note] = @note.attributes.slice(*note_params.keys)
+      flash[:alert] = @note.errors.full_messages
+      redirect_to new_note_path
     end
   end
 
@@ -44,15 +49,16 @@ class NotesController < ApplicationController
     tag_list = params[:note][:tag_name].split(nil)
     if @note.update(note_params)
       @note.save_tag(tag_list)
-      redirect_to note_path(@note), notice: "ノートが更新されました"
+      redirect_to note_path(@note), notice: 'ノートが更新されました'
     else
-      render 'edit'
+      flash[:alert] = @note.errors.full_messages
+      redirect_to edit_note_path(@note)
     end
   end
 
   def destroy
     @note.destroy if current_user.id == @note.user.id
-    redirect_to notes_path, notice: "ノートが削除されました"
+    redirect_to notes_path, notice: 'ノートが削除されました'
   end
 
 
