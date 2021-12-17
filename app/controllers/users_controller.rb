@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
-  before_action :set_user, only:[:show, :edit, :update]
-  before_action :authenticate_user!, except: :show
+  before_action :set_user, only: %i(show edit update)
+  before_action :authenticate_user!, except: %i(index show)
+
+  def index
+    redirect_to new_user_registration_path
+  end
 
   def show
   end

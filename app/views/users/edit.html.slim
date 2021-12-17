@@ -1,7 +1,6 @@
 .container
   .row
     .mx-auto
-      = render 'layouts/error_messages', resource: @user
       .card.shadow style='width:25rem;'
         .card-body
           = form_with(model: @user, local: true) do |f|
