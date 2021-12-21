@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'contacts/new'
+  post 'contacts/confirm' => 'contacts/confirm'
+  post 'contacts/complete' => 'contacts/complete'
   root to: 'homes#top'
   get 'homes/top'
   get 'homes/about'
