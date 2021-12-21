@@ -36,5 +36,5 @@
       .comments-index
         = render 'comments/index', note: @note, comments: @comments
       -if user_signed_in?
-        .comment-error
+        .comment-form
           = render 'comments/form', note: @note, comment: @comment
