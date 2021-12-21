@@ -1,0 +1,19 @@
+.container
+  .row
+    .col.col-lg-10.mx-auto
+      h4.offset-3 お問い合わせフォーム
+      .d-flex.justify-content-center
+        = form_with url: contacts_confirm_path, local: true do |f|
+          table.table.table-borderless
+            tr
+              td align='right' = f.label :name
+              td  = f.text_field :name, value: @contact.name
+            tr
+              td align='right' = f.label :email
+              td = f.email_field :email, value: @contact.email
+            tr
+              td align='right' = f.label :message
+              td = f.text_area :message, value: @contact.message, rows: 6, id: 'contact-message'
+            tr
+              td
+              td = f.submit '確認画面へ', class: 'btn btn-outline-dark btn-sm'
