@@ -2,7 +2,7 @@
   p
     = comment.body
   p.text-right.border-bottom
-    - if comment.user_id == current_user.id
+    - if user_signed_in? && comment.user_id == current_user.id
       = link_to 'Delete', note_comment_path(note, comment),
         remote: true, method: :delete, data: { confirm: 'Are you sure?' }
     -else
