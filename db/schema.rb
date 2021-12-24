@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_10_025548) do
+ActiveRecord::Schema.define(version: 2021_12_24_014430) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id"
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 2021_12_10_025548) do
     t.datetime "updated_at", null: false
     t.index ["note_id"], name: "index_reminds_on_note_id"
     t.index ["user_id"], name: "index_reminds_on_user_id"
+  end
+
+  create_table "sns_credentials", force: :cascade do |t|
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
   create_table "tag_maps", force: :cascade do |t|
