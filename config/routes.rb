@@ -6,9 +6,7 @@ Rails.application.routes.draw do
   get 'homes/top'
   get 'homes/about'
   root to: "notes#index"
-  devise_for :users, controllers: {
-    omniauth_callbacks: 'users/omniauth_callbacks'
-  }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :users, only: %i(index show edit update)
   resources :notes do
     resources :comments, only: %i(create destroy)
