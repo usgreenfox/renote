@@ -28,6 +28,6 @@
           = f.password_field :password_confirmation, autocomplete: "new-password"
         .actions
           = f.submit "Sign up", class:"btn btn-outline-dark btn-sm"
-      = link_to 'googleアカウントでログイン', user_google_oauth2_omniauth_callback_path
+      
       = render "devise/shared/links"
 
