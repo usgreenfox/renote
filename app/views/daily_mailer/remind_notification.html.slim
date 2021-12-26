@@ -1,7 +1,9 @@
  .container
   .row
-    h4.border-bottom
+    = link_to "ノートへ移動", note_url(@remind.note)
+    h4
+      | -title
       = @remind.note.title
     div
+      | -body
       = sanitize @remind.note.body
-    /= link_to "ページへ移動", note_url(@remind.note)
