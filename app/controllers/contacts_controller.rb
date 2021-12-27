@@ -8,8 +8,8 @@ class ContactsController < ApplicationController
     if @contact.valid?
       render :confirm
     else
+      flash.now[:alert] = @contact.errors.full_messages
       render :new
-      flash[:alert] = @contact.errors.full_messages
     end
   end
 
