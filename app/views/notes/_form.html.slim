@@ -10,7 +10,7 @@
 
   .form-group
     = f.label :tag_name
-    = f.text_field :tag_name, class: 'form-control', value: tags
+    = f.text_field :tag_name, class: 'form-control', value: tags, placeholder: '半角スペースで複数登録可'
 
   .form-group
     = f.radio_button :in_private, false, checked: !note.in_private
