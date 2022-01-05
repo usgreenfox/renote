@@ -21,4 +21,8 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
   end
+  
+  def having_entities
+    self.entities.order(salience: :DESC).first
+  end
 end
