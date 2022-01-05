@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_01_05_094648) do
   create_table "entities", force: :cascade do |t|
     t.string "name"
     t.float "salience"
-    t.string "type"
+    t.string "category"
     t.integer "user_id"
     t.integer "note_id"
     t.datetime "created_at", null: false

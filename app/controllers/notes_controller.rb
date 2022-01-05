@@ -29,15 +29,8 @@ class NotesController < ApplicationController
   def create
     @note = current_user.notes.new(note_params)
     tag_list = params[:note][:tag_name].split(nil)
-    entities = get_data(@note.body)
-    entities.each do |entity|
-      note.entities.new(
-        name: entity['name'],
-        salience: entity['salience'],
-        type: entity['type'],
-        user_id: current_user.id
-        )
-    end
+    # エンティティの取得、登録
+    Entity.registration_entities(@note)
     if @note.save
       # sessionの初期化
       session[:note] = nil
@@ -56,6 +49,8 @@ class NotesController < ApplicationController
 
   def update
     tag_list = params[:note][:tag_name].split(nil)
+    # エンティティの取得、更新
+    Entity.registration_entities(@note)
     if @note.update(note_params)
       @note.save_tag(tag_list)
       redirect_to note_path(@note), notice: 'ノートが更新されました'
@@ -69,7 +64,6 @@ class NotesController < ApplicationController
     @note.destroy if current_user.id == @note.user.id
     redirect_to notes_path, notice: 'ノートが削除されました'
   end
-
 
   private
   def note_params
