@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :fav_notes, through: :bookmarks, source: :note
   has_many :reminds, dependent: :destroy
+  has_many :entities, dependent: :destroy
 
   validates :name, presence: true
 
@@ -19,5 +20,9 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
     end
+  end
+  
+  def having_entities
+    self.entities.order(salience: :DESC).first
   end
 end

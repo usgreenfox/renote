@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_26_071350) do
+ActiveRecord::Schema.define(version: 2022_01_05_094648) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id"
@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(version: 2021_12_26_071350) do
     t.datetime "updated_at", null: false
     t.index ["note_id"], name: "index_comments_on_note_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "entities", force: :cascade do |t|
+    t.string "name"
+    t.float "salience"
+    t.string "category"
+    t.integer "user_id"
+    t.integer "note_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["note_id"], name: "index_entities_on_note_id"
+    t.index ["user_id"], name: "index_entities_on_user_id"
   end
 
   create_table "notes", force: :cascade do |t|
