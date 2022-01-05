@@ -5,6 +5,7 @@ class Note < ApplicationRecord
   has_many :reminds, dependent: :destroy
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
+  has_many :entities, dependent: :destroy
 
   validates :title, presence: true
   validates :body, presence: true

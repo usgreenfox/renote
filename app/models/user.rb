@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :fav_notes, through: :bookmarks, source: :note
   has_many :reminds, dependent: :destroy
+  has_many :entities, dependent: :destroy
 
   validates :name, presence: true
 
