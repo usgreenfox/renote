@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'recommends/' => 'recommends#index', as: 'recommends'
   get 'contacts/new'
   post 'contacts/confirm' => 'contacts/confirm'
   post 'contacts/complete' => 'contacts/complete'

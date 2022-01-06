@@ -12,7 +12,10 @@
           = link_to 'About', homes_about_path
       .mt-3
         h3
-          = link_to 'Notes', notes_path
+          - if user_signed_in?
+            = link_to 'Recommends', recommends_path
+          - else
+            = link_to 'Notes', notes_path
       .mt-3
         h3
           = link_to 'Contact us', contacts_new_path
