@@ -12,7 +12,7 @@ class Entity < ApplicationRecord
     entities = Language::get_data(note.body)
 
     # slienceの高い3つをDBに登録
-    entities[0..2].each do |entity|
+    entities[0..9].each do |entity|
       note.entities.new(
         name: entity['name'],
         salience: entity['salience'],
