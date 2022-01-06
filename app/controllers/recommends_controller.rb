@@ -1,7 +1,8 @@
 class RecommendsController < ApplicationController
   def index
     # 文字数の少なすぎるノートは、エンティティが高くなる傾向のため除外
-    query = Entity.eager_load(:note).where('length(notes.body) >= 50')
+    # Trixによりdivタグが発生するため除外(他のHTMLタグについては)
+    query = Entity.eager_load(:note).where('length(notes.body) >= 100').where.not(name: 'div')
 
     # ユーザーがノートを作成していない場合、ユーザーはエンティティを持たないので
     # 全エンティティで検索する
@@ -19,5 +20,6 @@ class RecommendsController < ApplicationController
       .includes([:user])
       .take(10)
       # .order("RANDOM()").limit(10) or take(10)か要検討
+      byebug
   end
 end
