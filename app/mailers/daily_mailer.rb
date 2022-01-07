@@ -7,6 +7,6 @@ class DailyMailer < ApplicationMailer
   #
   def remind_notification(remind)
     @remind = remind
-    mail(to: @remind.user.email, subject: "ノートを振り返ろう")
+    mail(to: @remind.user.email, subject: @remind.note.title)
   end
 end

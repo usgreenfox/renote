@@ -1,9 +1,5 @@
  .container
   .row
     = link_to "ノートへ移動", note_url(@remind.note)
-    h4
-      | -title
-      = @remind.note.title
     div
-      | -body
       = sanitize @remind.note.body
