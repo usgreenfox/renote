@@ -6,12 +6,35 @@ class RecommendsController < ApplicationController
     entities = User.entities_of(current_user)
     if entities.present?
       # 対象エンティティをもつノートを取得し、ランダムに10件抽出する
-      i = entities.count - 1
-      @notes = Note.eager_load(:entities).where('entities.name IN (?)', entities[0..i]).order(rand).limit(10).includes([:user])
+
+      column = 'entities.name LIKE?'
+      columns = []
+      keywords = []
+
+      entities[0..49].each do |entity|
+        # 検索ワードにエンティティを追加していく
+        keywords << "%#{entity}%"
+        # 検索ワードと'xxx LIKE?'の数を合わせる
+        columns << column
+
+        # 'xxx LIKE?'を'or'で繋ぐ
+        sql = columns.join(' or ')
+
+        @notes = Note
+          .eager_load(:entities)
+          .where(sql, *keywords)
+          .order(Arel.sql(rand))
+          .includes([:user])
+
+        # ノートが5個以上取得できた時点で終了
+        if @notes.count > 5
+          break
+        end
+      end
     else
       # ユーザーがノートを作成していない場合、ユーザーはエンティティを持たないので
       # 全ノートからランダムで表示する
-      @notes = Note.order(rand).limit(10).includes([:user])
+      @notes = Note.order(rand).limit(5).includes([:user])
     end
   end
 end
