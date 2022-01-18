@@ -2,4 +2,6 @@
     .row
         .col.col-lg-10.mx-auto
             = render 'form', note: @note, tags: @tags
+            = link_to '削除する', note_path(@note), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn btn-dark btn-sm'
+            br
             = link_to '<< Back', request.referer
