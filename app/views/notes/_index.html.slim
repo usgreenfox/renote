@@ -2,12 +2,14 @@
   - if note.in_private == false || note.user == current_user
     .card.shadow-sm.mb-3
      .card-body
-        = link_to note_path(note) do
-          h4.text-truncate = note.title
-        i.fas.fa-feather-alt.mr-2
-        = link_to user_path(note.user) do
-          = note.user.name
-        .mt-2
-          = "作成：#{note.created_at.strftime('%Y/%m/%d')}"
-          br
-          = "更新：#{note.updated_at.strftime('%Y/%m/%d')}"
+      - if note.in_private == true
+        .badge.bg-secondary.text-light 非公開
+      = link_to note_path(note) do
+        h4.text-truncate = note.title
+      i.fas.fa-feather-alt.mr-2
+      = link_to user_path(note.user) do
+        = note.user.name
+      .mt-2
+        = "作成：#{note.created_at.strftime('%Y/%m/%d')}"
+        br
+        = "更新：#{note.updated_at.strftime('%Y/%m/%d')}"
