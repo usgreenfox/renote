@@ -10,3 +10,4 @@
             { class: 'mx-2'}
           = f.submit '並べ替え', class:"btn btn-outline-dark btn-sm", style: 'height: 28px;'
       = render 'index', notes: @notes
+      = paginate @notes
