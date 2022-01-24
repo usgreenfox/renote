@@ -30,7 +30,7 @@ class NotesController < ApplicationController
     @note = current_user.notes.new(note_params)
     tag_list = params[:note][:tag_name].split(nil)
     # エンティティの取得、登録
-    Entity.registration_entities(@note)
+    @note.registration_entities
     if @note.save
       # sessionの初期化
       session[:note] = nil
@@ -50,7 +50,7 @@ class NotesController < ApplicationController
   def update
     tag_list = params[:note][:tag_name].split(nil)
     # エンティティの取得、更新
-    Entity.registration_entities(@note)
+    @note.registration_entities
     if @note.update(note_params)
       @note.save_tag(tag_list)
       redirect_to note_path(@note), notice: 'ノートが更新されました'

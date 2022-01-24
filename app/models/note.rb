@@ -35,12 +35,12 @@ class Note < ApplicationRecord
       self.tags << new_post_tag
     end
   end
-  
+
   # develop => SQLite, production => MySQLのため
   RANDOM_SORT = Rails.env.production? ? "RAND()" : "RANDOM()"
   def self.random_search(entities)
     return includes(:user).order(RANDOM_SORT).limit(5) unless entities
-    
+
     column = 'entities.name LIKE?'
     columns, keywords, notes = [], [], []
     entities[0..49].each do |entity|
@@ -57,6 +57,23 @@ class Note < ApplicationRecord
       break if notes.count > 5
     end
     notes
+  end
+
+  def registration_entities
+    # 変種前のエンティティを削除
+    entities.destroy_all if entities.present?
+    # Natural Language APIよりエンティティを取得
+    get_entities = Language.get_data(body)
+
+    # slienceの高い10個をDBに登録
+    get_entities[0..9].each do |entity|
+      entities.new(
+        name: entity['name'],
+        salience: entity['salience'],
+        category: entity['type'],
+        user_id: user_id
+        )
+    end
   end
 
 end
