@@ -24,15 +24,10 @@ class User < ApplicationRecord
 
   # ユーザーの全ノートを結合してLanguageに渡すことで
   # ユーザーのエンティティを取得する
-  def self.entities_of(user)
-    text_array = user.notes.pluck(:body)
-    text = text_array.join
-    raw_entities = Language::get_data(text)
-    entities = []
-    raw_entities.each do |entity|
-      entities << entity['name']
-    end
-    entities
+  def build_entities
+    text = user.notes.pluck(:body).join
+    entities = Language.get_data(text)
+    entities.map { |entity| entity['name'] }
   end
 
 end

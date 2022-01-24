@@ -3,7 +3,7 @@ class RecommendsController < ApplicationController
     # develop => SQLite, production => MySQLのため
     rand = Rails.env.production? ? "RAND()" : "RANDOM()"
 
-    entities = User.entities_of(current_user)
+    entities = current_user.build_entities
     if entities.present?
       # 対象エンティティをもつノートを取得し、ランダムに10件抽出する
 
