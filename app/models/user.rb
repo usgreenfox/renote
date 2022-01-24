@@ -25,7 +25,7 @@ class User < ApplicationRecord
   # ユーザーの全ノートを結合してLanguageに渡すことで
   # ユーザーのエンティティを取得する
   def build_entities
-    text = user.notes.pluck(:body).join
+    text = notes.pluck(:body).join
     entities = Language.get_data(text)
     entities.map { |entity| entity['name'] }
   end
