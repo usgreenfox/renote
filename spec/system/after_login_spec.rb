@@ -13,12 +13,14 @@ describe 'ユーザーログイン後のテスト' do
 
   describe 'トップ画面のテスト' do
     before { visit root_path }
+    it { expect(current_path).to eq '/' }
+
     context '表示の確認' do
-      it { expect(current_path).to eq '/' }
-      it { expect(page).to have_content'About' }
-      it { expect(page).to have_content'Recommends' }
-      it { expect(page).to have_content'Contact us' }
-      
+      subject { page }
+      it { is_expected.to have_content'About' }
+      it { is_expected.to have_content'Recommends' }
+      it { is_expected.to have_content'Contact us' }
+
       context 'Navの表示の確認' do
         it 'Re:noteリンクが表示される' do
           renote_link = find_all('a')[0].native.inner_text
@@ -61,7 +63,7 @@ describe 'ユーザーログイン後のテスト' do
   describe "投稿画面(new_note_path)のテスト" do
     before { visit new_note_path }
     it { expect(current_path).to eq '/notes/new' }
-    
+
     context '投稿処理のテスト' do
       it '投稿後のリダイレクト先は正しいか' do
         fill_in 'note[title]', with: Faker::Lorem.characters(number:5)
@@ -80,9 +82,10 @@ describe 'ユーザーログイン後のテスト' do
   describe '詳細画面(note_path)のテスト' do
     let!(:comment) { create(:comment, note: note, user: user) }
     before { visit note_path(note) }
-    subject { page }
+    it { expect(current_path).to eq "/notes/#{note.id}" }
     context '表示の確認' do
-      it { expect(current_path).to eq "/notes/#{note.id}" }
+      subject { page }
+      it { is_expected.to have_link '', href: user_path(note.user) }
       it { is_expected.to have_link '', href: edit_note_path(note) }
       it { is_expected.to have_no_css '.fa-bookmark' }
       it { is_expected.to have_css '.fa-clock' }
@@ -94,9 +97,9 @@ describe 'ユーザーログイン後のテスト' do
 
   describe 'ユーザー詳細画面のテスト' do
     before { visit user_path(user) }
-    subject { page }
+    it { expect(current_path).to eq "/users/#{user.id}" }
     context '表示の確認' do
-      it { expect(current_path).to eq "/users/#{user.id}" }
+      subject { page }
       it { is_expected.to have_content user.email }
       it { is_expected.to have_content user.name }
     end
@@ -110,23 +113,24 @@ describe 'ユーザーログイン後のテスト' do
 
   describe 'ユーザー編集画面のテスト' do
     before { visit edit_user_path(user) }
-    subject { page }
+    it { expect(current_path).to eq "/users/#{user.id}/edit" }
     context 'フォームの確認' do
+      subject { page }
       it { is_expected.to have_field('user[name]', with: user.name) }
       it { is_expected.to have_field('user[email]', with: user.email) }
-    end
-    context '更新処理のテスト' do
-      it 'nameを入力して保存' do
-        fill_in 'user[name]', with: 'test'
-        click_button '更新'
-        expect(current_path).to eq "/users/#{user.id}"
-        is_expected.to have_content 'test'
-      end
-      it 'emailを入力して保存' do
-        fill_in 'user[email]', with: 'test@gmail.com'
-        click_button '更新'
-        expect(current_path).to eq "/users/#{user.id}"
-        is_expected.to have_content 'test@gmail.com'
+      context '更新処理のテスト' do
+        it 'nameを入力して保存' do
+          fill_in 'user[name]', with: 'test'
+          click_button '更新'
+          expect(current_path).to eq "/users/#{user.id}"
+          is_expected.to have_content 'test'
+        end
+        it 'emailを入力して保存' do
+          fill_in 'user[email]', with: 'test@gmail.com'
+          click_button '更新'
+          expect(current_path).to eq "/users/#{user.id}"
+          is_expected.to have_content 'test@gmail.com'
+        end
       end
     end
   end
