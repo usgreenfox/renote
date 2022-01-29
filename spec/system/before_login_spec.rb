@@ -77,6 +77,9 @@ describe 'ユーザーログイン前のテスト' do
       it { is_expected.to have_no_link '', href: edit_note_path(note) }
       it { is_expected.to have_no_css '.fa-bookmark' }
       it { is_expected.to have_no_css '.fa-clock' }
+      it { is_expected.to have_content note.title }
+      it { is_expected.to have_content note.tags.first.name }
+      it { is_expected.to have_content note.body }
       it { is_expected.to have_content comment.body }
       it { is_expected.to have_no_content 'Delete' }
       it { is_expected.to have_no_css '.comment-form' }
@@ -88,7 +91,10 @@ describe 'ユーザーログイン前のテスト' do
         click_on note.user.name, match: :first
         is_expected.to eq "/users/#{note.user.id}"
       end
-      # WANT: タグ検索のページ遷移
+      it 'タグバッジ押すと、タグ検索ページに遷移する' do
+        click_on note.tags.first.name
+        is_expected.to eq "/search"
+      end
     end
   end
 
