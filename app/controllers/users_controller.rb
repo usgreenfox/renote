@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @notes = Note.includes(:user).where(user_id: @user.id).order(updated_at: :DESC).page(params[:page])
   end
 
   def edit

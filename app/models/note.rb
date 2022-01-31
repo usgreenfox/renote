@@ -9,6 +9,7 @@ class Note < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
+  validates :user_id, presence: true
 
   def bookmarked_by?(user)
     self.bookmarks.where(user_id: user.id).exists?
@@ -75,5 +76,4 @@ class Note < ApplicationRecord
         )
     end
   end
-
 end

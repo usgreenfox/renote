@@ -5,7 +5,7 @@ class NotesController < ApplicationController
   def index
     @column = sort_column
     @direction = sort_direction
-    @notes = Note.all.order(@column => @direction).includes([:user])
+    @notes = Note.includes(:user).order(@column => @direction).page(params[:page])
   end
 
   def show
