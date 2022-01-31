@@ -17,45 +17,34 @@ describe 'ユーザーログイン後のテスト' do
 
     context '表示の確認' do
       subject { page }
+      it { is_expected.to have_link 'Re:note', href: root_path }
+      it { is_expected.to have_link 'Mypage', href: user_path(user) }
+      it { is_expected.to have_link 'Log out', href: destroy_user_session_path }
       it { is_expected.to have_content'About' }
       it { is_expected.to have_content'Recommends' }
       it { is_expected.to have_content'Contact us' }
-
-      context 'Navの表示の確認' do
-        it 'Re:noteリンクが表示される' do
-          renote_link = find_all('a')[0].native.inner_text
-          expect(renote_link).to match('Re:note')
-        end
-        it 'Mypageリンクが表示される' do
-          mypage_link = find_all('a')[1].native.inner_text
-          expect(mypage_link).to match('Mypage')
-        end
-        it 'Log outリンクが表示される' do
-          log_out_link = find_all('a')[2].native.inner_text
-          expect(log_out_link).to match('Log out')
-        end
-      end
     end
-    context 'リンク先の確認' do
+    context '遷移の確認' do
+      subject { current_path }
       it 'Re:noteを押すと、トップ画面に遷移する' do
         click_link 'Re:note'
-        expect(current_path).to eq '/'
+        is_expected.to eq '/'
       end
       it 'Mypageを押すと、マイページ画面に遷移する' do
         click_link 'Mypage'
-        expect(current_path).to eq "/users/#{user.id}"
+        is_expected.to eq "/users/#{user.id}"
       end
       it 'Log outを押すと、トップ画面に遷移する' do
         click_link 'Log out'
-        expect(current_path).to eq '/'
+        is_expected.to eq '/'
       end
       it 'Aboutを押すと、アバウト画面に遷移する' do
         click_link 'About'
-        expect(current_path).to eq '/homes/about'
+        is_expected.to eq '/homes/about'
       end
       it 'Recommendsを押すと、recommend一覧画面に遷移する' do
         click_link 'Recommends'
-        expect(current_path).to eq '/recommends'
+        is_expected.to eq '/recommends'
       end
     end
   end
@@ -89,6 +78,9 @@ describe 'ユーザーログイン後のテスト' do
       it { is_expected.to have_link '', href: edit_note_path(note) }
       it { is_expected.to have_no_css '.fa-bookmark' }
       it { is_expected.to have_css '.fa-clock' }
+      it { is_expected.to have_content note.title }
+      it { is_expected.to have_content note.tags.first.name }
+      it { is_expected.to have_content note.body }
       it { is_expected.to have_content comment.body }
       it { is_expected.to have_content 'Delete' }
       it { is_expected.to have_css '.comment-form' }
@@ -134,5 +126,4 @@ describe 'ユーザーログイン後のテスト' do
       end
     end
   end
-
 end
